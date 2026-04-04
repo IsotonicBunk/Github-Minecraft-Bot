@@ -2,11 +2,10 @@ import os
 import subprocess
 
 # === НАСТРОЙКИ ===
-MC_DIR = ".\\minecraft"
+MC_DIR = "./minecraft"  # путь к папке Minecraft
 VERSION = "1.16.5"
 FABRIC_VERSION = "0.14.0"
-#JDK_DIR = ".\\jdk\\jdk-21.0.10.7-hotspot\\bin\\java.exe"
-JDK_DIR = "java"
+JDK_DIR = "java"  # системная java
 USERNAME = "isobunsMCGithubBot"
 
 # === СОБИРАЕМ CLASSPATH ===
@@ -17,18 +16,18 @@ for root, dirs, files in os.walk(os.path.join(MC_DIR, "libraries")):
         if file.endswith(".jar"):
             libs.append(os.path.join(root, file))
 
-# Minecraft jar
+# Добавляем основной Minecraft jar
 libs.append(os.path.join(MC_DIR, "versions", VERSION, f"{VERSION}.jar"))
 
-# classpath
-cp = ";".join(libs)
+# classpath для Linux / Ubuntu
+cp = ":".join(libs)
 
 # === NATIVES ===
 natives_path = os.path.join(MC_DIR, "natives")
 
 # === КОМАНДА ===
 cmd = [
-    JDK_DIR ,
+    JDK_DIR,
     "-Xmx2G",
     f"-Djava.library.path={natives_path}",
     "-cp", cp,
