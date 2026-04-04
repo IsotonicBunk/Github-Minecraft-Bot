@@ -1,5 +1,9 @@
 import os
 import subprocess
+import zipfile
+
+
+
 
 # === НАСТРОЙКИ ===
 MC_DIR = "./minecraft"  # путь к папке Minecraft
@@ -24,6 +28,19 @@ cp = ":".join(libs)
 
 # === NATIVES ===
 natives_path = os.path.join(MC_DIR, "natives")
+
+os.makedirs(natives_path, exist_ok=True)
+
+for root, dirs, files in os.walk(os.path.join(MC_DIR, "libraries")):
+    for file in files:
+        if "natives-linux" in file and file.endswith(".jar"):
+            jar_path = os.path.join(root, file)
+
+            with zipfile.ZipFile(jar_path, 'r') as jar:
+                jar.extractall(natives_path)
+
+print("Natives extracted!")
+
 
 # === КОМАНДА ===
 cmd = [

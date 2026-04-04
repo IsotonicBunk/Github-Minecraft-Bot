@@ -30,6 +30,8 @@ jobs:
         python-version: "3.10"
     - name: Install dependencies
       run: |
+        sudo apt-get update
+        sudo apt-get install -y xvfb libgl1-mesa-dri libgl1-mesa-glx
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
@@ -39,8 +41,6 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: Set up virtual display
-      run: sudo apt-get install -y xvfb
 
     - name: Launch Minecraft headless
       run: xvfb-run -a python3 launch.py
