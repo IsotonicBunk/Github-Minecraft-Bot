@@ -54,6 +54,7 @@ cmd = [
 
     "--username", USERNAME,
     "--version", f"fabric-loader-{FABRIC_VERSION}-{VERSION}",
+    f"-Dorg.lwjgl.librarypath={natives_path}",
     "--gameDir", MC_DIR,
     "--assetsDir", os.path.join(MC_DIR, "assets"),
     "--assetIndex", "1.16",
