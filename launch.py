@@ -47,6 +47,7 @@ cmd = [
     JDK_DIR,
     "-Xmx2G",
     f"-Djava.library.path={natives_path}",
+    f"-Dorg.lwjgl.librarypath={natives_path}",
     "-cp", cp,
 
     # Главный класс Fabric
@@ -54,7 +55,7 @@ cmd = [
 
     "--username", USERNAME,
     "--version", f"fabric-loader-{FABRIC_VERSION}-{VERSION}",
-    f"-Dorg.lwjgl.librarypath={natives_path}",
+    
     "--gameDir", MC_DIR,
     "--assetsDir", os.path.join(MC_DIR, "assets"),
     "--assetIndex", "1.16",
