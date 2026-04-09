@@ -59,17 +59,23 @@ cp = ":".join(libs)
 cmd = [
     "java",
     "-Xmx2G",
-    
-    # === Отключаем проблемный Indigo рендерер ===
+
+    # === Самые важные флаги для headless 1.16.5 ===
     "-Dfabric.renderer=vanilla",
+    "-Dminecraft.renderer=vanilla",
     "-Dfabric.indigo.enabled=false",
     "-Dfabric.indigo.disable=true",
-    "-Dminecraft.renderer=vanilla",
-    
 
+    # Упрощаем графику максимально
+    "-Dminecraft.graphicsMode=0",           # fast graphics
+    "-Dminecraft.renderDistance=4",         # маленькая дистанция отрисовки
+    "-Dminecraft.fancyGraphics=false",
+    "-Dminecraft.ao=false",                 # отключить ambient occlusion
+
+    # Дополнительная стабильность
+    "-Djava.awt.headless=true",
     "-Dorg.lwjgl.util.Debug=false",
 
-    
     "-cp", cp,
     "net.fabricmc.loader.impl.launch.knot.KnotClient",
 
