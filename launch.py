@@ -59,7 +59,7 @@ cp = ":".join(libs)
 cmd = [
     "java",
     "-Xmx2G",
-    "-Dfabric.renderer=0",
+    "-Dfabric.renderer=vanilla",
     "-Dorg.lwjgl.util.Debug=true",
     "-Dorg.lwjgl.util.DebugLoader=true",
     
