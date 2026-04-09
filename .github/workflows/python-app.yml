@@ -28,13 +28,21 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: "3.10"
-    - name: Install dependencies
+    - name: Install dependencies for headless Minecraft
       run: |
-        sudo apt-get install -y xvfb libgl1-mesa-dri
-        sudo apt-get install -y libgl1-mesa-glx libgl1-mesa-dri libx11-6 libxext6 libxxf86vm1 libxrender1 libxtst6
-        python -m pip install --upgrade pip
-        pip install flake8 pytest
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        sudo apt-get update -qq
+        sudo apt-get install -y --no-install-recommends \
+          xvfb \
+          libgl1-mesa-dri \
+          libgl1 \
+          libx11-6 \
+          libxext6 \
+          libxxf86vm1 \
+          libxrender1 \
+          libxtst6 \
+          libxi6 \
+          libglib2.0-0 \
+          libpulse0
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
@@ -42,9 +50,14 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
-    - name: Run Minecraft
-      run: |
-        export DISPLAY=:99
-        Xvfb :99 -screen 0 1920x1080x24 +extension GLX +render -noreset > /dev/null 2>&1 &
-        sleep 3  # даём xvfb запуститься
-        xvfb-run -a python3 launch.py   # или просто python3 launch.py, если DISPLAY уже экспортирован
+    - name: Run Minecraft with Xvfb
+        run: |
+          # Запускаем виртуальный дисплей
+          Xvfb :99 -screen 0 1920x1080x24 +extension GLX +render -noreset > /dev/null 2>&1 &
+          export DISPLAY=:99
+          sleep 2
+            
+          # Запускаем твой скрипт
+          python3 launch.py
+        env:
+          JAVA_HOME: ${{ env.JAVA_HOME }}
