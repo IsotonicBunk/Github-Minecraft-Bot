@@ -77,7 +77,7 @@ cmd = [
     "-Dorg.lwjgl.util.Debug=false",
 
     "-cp", cp,
-    "net.fabricmc.loader.impl.launch.knot.KnotServer",
+    "net.fabricmc.loader.impl.launch.knot.KnotClient",
 
     "--username", USERNAME,
     "--version", f"fabric-loader-{FABRIC_VERSION}-{VERSION}",
