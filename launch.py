@@ -1,7 +1,6 @@
 import os
 import subprocess
 import urllib.request
-import zipfile
 
 
 # === Автоскачивание linux natives для LWJGL 3.2.2 ===
