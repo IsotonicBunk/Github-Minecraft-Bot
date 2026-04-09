@@ -23,8 +23,7 @@ cp = ":".join(libs)
 cmd = [
     "java",
     "-Xmx2G",
-    "-Dorg.lwjgl.util.Debug=true",
-    "-Dorg.lwjgl.util.DebugLoader=true",
+    
     "-cp", cp,
     "net.fabricmc.loader.impl.launch.knot.KnotClient",
 
