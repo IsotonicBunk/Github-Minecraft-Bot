@@ -62,12 +62,13 @@ cmd = [
     
     # === Отключаем проблемный Indigo рендерер ===
     "-Dfabric.renderer=vanilla",
-    "-Dfabric.indigo.disable=true",
     "-Dfabric.indigo.enabled=false",
+    "-Dfabric.indigo.disable=true",
+    "-Dminecraft.renderer=vanilla",
     
-    # Отладка LWJGL (можно убрать позже)
-    "-Dorg.lwjgl.util.Debug=true",
-    "-Dorg.lwjgl.util.DebugLoader=true",
+
+    "-Dorg.lwjgl.util.Debug=false",
+
     
     "-cp", cp,
     "net.fabricmc.loader.impl.launch.knot.KnotClient",
