@@ -59,9 +59,13 @@ cp = ":".join(libs)
 cmd = [
     "java",
     "-Xmx2G",
+    
+    # === Отключаем проблемный Indigo рендерер ===
     "-Dfabric.renderer=vanilla",
-    "-Dfml.advancedModelLoading=false",
-    "-Dminecraft.renderer=vanilla",
+    "-Dfabric.indigo.disable=true",
+    "-Dfabric.indigo.enabled=false",
+    
+    # Отладка LWJGL (можно убрать позже)
     "-Dorg.lwjgl.util.Debug=true",
     "-Dorg.lwjgl.util.DebugLoader=true",
     
