@@ -59,7 +59,7 @@ cp = ":".join(libs)
 cmd = [
     "java",
     "-Xmx2G",
-    # Добавь эти две строки для отладки (можно потом убрать)
+    "-Dfabric.renderer=0",
     "-Dorg.lwjgl.util.Debug=true",
     "-Dorg.lwjgl.util.DebugLoader=true",
     
