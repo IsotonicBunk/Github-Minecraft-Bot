@@ -31,6 +31,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get install -y xvfb libgl1-mesa-dri
+        sudo apt-get install -y libgl1-mesa-glx libgl1-mesa-dri libx11-6 libxext6 libxxf86vm1 libxrender1 libxtst6
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
@@ -41,6 +42,9 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
-    - name: Launch Minecraft headless
-      run: xvfb-run -a python3 launch.py
-
+    - name: Run Minecraft
+      run: |
+        export DISPLAY=:99
+        Xvfb :99 -screen 0 1920x1080x24 +extension GLX +render -noreset > /dev/null 2>&1 &
+        sleep 3  # даём xvfb запуститься
+        xvfb-run -a python3 launch.py   # или просто python3 launch.py, если DISPLAY уже экспортирован
