@@ -47,7 +47,6 @@ jobs:
             libpulse0 \
             libasound2 \
             mesa-utils \
-            libegl1-mesa
 
           python -m pip install --upgrade pip
           pip install flake8 pytest
