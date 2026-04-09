@@ -60,6 +60,8 @@ cmd = [
     "java",
     "-Xmx2G",
     "-Dfabric.renderer=vanilla",
+    "-Dfml.advancedModelLoading=false",
+    "-Dminecraft.renderer=vanilla",
     "-Dorg.lwjgl.util.Debug=true",
     "-Dorg.lwjgl.util.DebugLoader=true",
     
