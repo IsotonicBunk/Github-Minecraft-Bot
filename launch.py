@@ -42,7 +42,7 @@ print("Linux natives готовы!")
 MC_DIR = "./minecraft"
 VERSION = "1.16.5"
 FABRIC_VERSION = "0.14.0"        # ← убедись, что это правильная версия твоего fabric loader
-USERNAME = "gg_gg"
+USERNAME = "FluffyGirly"
 
 # === Собираем classpath (теперь есть и linux natives) ===
 libs = []
